@@ -15,3 +15,4 @@ namespace Blazor_DbContextFactory.Data
         public string? Summary { get; set; }
     }
 }
+

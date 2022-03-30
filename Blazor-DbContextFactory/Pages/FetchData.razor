@@ -15,6 +15,7 @@
 }
 else
 {
+    <button @onclick=InsertForecast>Add new forecast</button>
     <table class="table">
         <thead>
             <tr>
@@ -22,8 +23,8 @@ else
                 <th>Temp. (C)</th>
                 <th>Temp. (F)</th>
                 <th>Summary</th>
+                <th>Actions</th>
             </tr>
-            <button onclick="@InsertForecast">Add new forecast</button>
         </thead>
         <tbody>
             @foreach (var forecast in forecasts)
@@ -32,7 +33,8 @@ else
                     <td>@forecast.Date.ToShortDateString()</td>
                     <td>@forecast.TemperatureC</td>
                     <td>@forecast.TemperatureF</td>
-                    <td>@forecast.Summary</td>
+                    <td>@forecast.Summary</td>   
+                    <td><button @onclick="() => DeleteForecast(forecast)">Delete</button></td>
                 </tr>
             }
         </tbody>
@@ -58,4 +60,16 @@ else
         forecasts.Add(forecast);
         await ForecastService.InsertForecastAsync(forecast);
     }
-}
+
+    private async Task DeleteForecast(WeatherForecast forecast)
+    {
+        forecasts.Remove(forecast);
+        await ForecastService.DeleteForecastAsync(forecast);
+    }
+
+  }
+
+
+
+
+

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Components.Web;
 var builder = WebApplication.CreateBuilder(args);
 
 var connectionString = builder.Configuration.GetConnectionString("ExampleDB");
-builder.Services.AddDbContext<ExampleContext>(options => options.UseSqlServer(connectionString));
+builder.Services.AddDbContextFactory<ExampleContext>(options => options.UseSqlServer(connectionString));
 
 // Add services to the container.
 builder.Services.AddRazorPages();
